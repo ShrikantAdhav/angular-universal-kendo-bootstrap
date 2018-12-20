@@ -22,7 +22,10 @@ import { SharedModule } from '../shared/shared.module';
     RegistrationPageComponent
   ],
   imports: [
-    BrowserModule,
+    // Add .withServerTransition() to support Universal rendering.
+    // The application ID can be any identifier which is unique on
+    // the page.
+    BrowserModule.withServerTransition({appId: 'my-app'}),
     BrowserAnimationsModule,
     AppRoutingModule,
     ShellComponentsModule,

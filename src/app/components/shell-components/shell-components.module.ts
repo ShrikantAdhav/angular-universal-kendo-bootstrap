@@ -1,3 +1,4 @@
+import { SharedModule } from './../../modules/shared/shared.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -8,7 +9,6 @@ import { RootShellComponent } from './root-shell/root-shell.component';
 import { ShellHeaderAndFooterComponent } from './shell-header-and-footer/shell-header-and-footer.component';
 import { ShellHeaderWithOnlyLogoComponent } from './shell-header-with-only-logo/shell-header-with-only-logo.component';
 import { ShellOnlyHeaderComponent } from './shell-only-header/shell-only-header.component';
-import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 @NgModule({
   declarations: [

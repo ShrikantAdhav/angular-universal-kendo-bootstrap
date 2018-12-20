@@ -1,5 +1,5 @@
-import { KendoUiModule } from 'src/app/modules/kendo-ui/kendo-ui.module';
 import { NgModule } from '@angular/core';
+import { KendoUiModule } from './../kendo-ui/kendo-ui.module';
 
 @NgModule({
   imports: [KendoUiModule],
