@@ -1,3 +1,4 @@
+import { FirebaseService } from './../../../modules/firebase/services/firebase/firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,26 +9,9 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  items: any[] = [
-    {
-      text: 'Item1',
-      items: [{ text: 'Item1.1' }, { text: 'Item1.2', items: [{ text: 'Item1.2.1' }, { text: 'Item1.2.2' }] }]
-    }, {
-      text: 'Item2',
-      items: [{ text: 'Item2.1' }, { text: 'Item2.2' }, { text: 'Item2.3' }]
-    }, {
-      text: 'Item3'
-    }
-  ];
-
   dropDownButtonItems: Array<any> = [
     {
       text: 'My Profile',
-      // disabled: true
-    }, {
-      text: 'Account Settings'
-    }, {
-      text: 'Support'
     }, {
       text: 'Log Out',
       callback: () => {
@@ -36,7 +20,7 @@ export class HeaderComponent implements OnInit {
     }
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private firebaseService: FirebaseService) { }
 
   ngOnInit() {
   }
@@ -52,8 +36,15 @@ export class HeaderComponent implements OnInit {
   }
 
   logoutUser() {
-    localStorage.setItem('isLoggedIn', 'false');
-    this.router.navigate(['login']);
+    this.firebaseService.logout()
+    .then((success) => {
+      console.log('success - ', success);
+      localStorage.setItem('isLoggedIn', 'false');
+      this.router.navigate(['login']);
+    })
+    .catch((failed) => {
+      console.log('failed - ', failed);
+    });
   }
 
 }

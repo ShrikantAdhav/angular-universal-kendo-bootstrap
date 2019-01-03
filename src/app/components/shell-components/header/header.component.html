@@ -1,12 +1,4 @@
-<p>
-  <kendo-menu [items]="items">
-  </kendo-menu>
-  <kendo-dropdownbutton kendoRippleContainer
-  [data]="dropDownButtonItems"
-  [icon]="'cog'"
-  (itemClick)="onSplitButtonItemClick($event)">
-</kendo-dropdownbutton>
-</p>
-<div class="example-col">
-
-</div>
+<header class="header">
+  <kendo-dropdownbutton kendoRippleContainer [data]="dropDownButtonItems" [icon]="'cog'" (itemClick)="onSplitButtonItemClick($event)">
+  </kendo-dropdownbutton>
+</header>

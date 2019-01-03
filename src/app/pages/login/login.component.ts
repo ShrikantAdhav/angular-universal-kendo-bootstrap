@@ -1,3 +1,4 @@
+import { FirebaseService } from './../../modules/firebase/services/firebase/firebase.service';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,10 +9,15 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private firebaseService: FirebaseService) { }
 
   loginUser() {
-    localStorage.setItem('isLoggedIn', 'true');
-    this.router.navigate(['home']);
+    this.firebaseService.loginUser('s.adhav@easternenterprise.com', 'Ansh@123')
+      .then((success) => {
+        this.router.navigate(['home']);
+      })
+      .catch((failed) => {
+        console.log('failed to log in - ', failed);
+      });
   }
 }

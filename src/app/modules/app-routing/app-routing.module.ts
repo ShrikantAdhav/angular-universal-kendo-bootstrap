@@ -1,3 +1,4 @@
+import { UserAuthenticationService } from './../../services/user-authentication.service';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -29,7 +30,8 @@ const routes: Routes = [
             path: 'home',
             component: HomePageComponent,
           }
-        ]
+        ],
+        canActivate: [UserAuthenticationService]
       },
       {
         path: '',
@@ -39,7 +41,8 @@ const routes: Routes = [
             path: 'profile',
             component: UserProfilePageComponent,
           }
-        ]
+        ],
+        canActivate: [UserAuthenticationService]
       },
       {
         path: '',

@@ -17,6 +17,31 @@ const { AppServerModuleNgFactory, LAZY_MODULE_MAP } = require('./dist/server/mai
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
+// ERROR -> ERROR { Error: Uncaught (in promise): Error: The XMLHttpRequest compatibility library was not found.
+// Ref -> https://github.com/angular/angularfire2/issues/1766
+// https://github.com/gdi2290/angular-websocket/issues/103
+(global as any).WebSocket = require('ws');
+(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+
+
+// Error after build SSR
+// WARNING in ./node_modules/ws/lib/buffer-util.js
+// Module not found: Error: Can't resolve 'bufferutil' in 'D:\Self-Preparation\angular-update\angular-update\node_modules\ws\lib'
+//  @ ./node_modules/ws/lib/buffer-util.js
+//  @ ./node_modules/ws/lib/receiver.js
+//  @ ./node_modules/ws/index.js
+//  @ ./server.ts
+
+// WARNING in ./node_modules/ws/lib/validation.js
+// Module not found: Error: Can't resolve 'utf-8-validate' in 'D:\Self-Preparation\angular-update\angular-update\node_modules\ws\lib'
+//  @ ./node_modules/ws/lib/validation.js
+//  @ ./node_modules/ws/lib/receiver.js
+//  @ ./node_modules/ws/index.js
+//  @ ./server.ts
+// Ref - https://github.com/gdi2290/angular-websocket/issues/103
+
+
+
 // Express server
 const app = express();
 
